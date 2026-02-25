@@ -53,7 +53,6 @@ jobs:
           python-version: '3.13'
 
       - name: Install python module
-        working-directory: ${{ github.workspace }}/tests/check_logs
         run: |
           python -c "import sys; print(sys.version); print(sys.executable)"
           python -m pip install yamllint

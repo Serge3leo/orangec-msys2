@@ -83,12 +83,14 @@ jobs:
         run: |
           pacman -S --noconfirm binutils make
           choco install --yes --no-progress orangec
-          @("ORANGEC=C:\Program Files (x86)\OrangeC") `
+            # Hard code "%ORANGEC%\varsocc.bat"
+          $ORANGEC = "C:\Program Files (x86)\OrangeC"
+          "ORANGEC=$ORANGEC" `
             | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8
-          @("C:\Program Files (x86)\OrangeC\bin") `
+          "$ORANGEC\bin" `
             | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
 
-      - name: Check versions
+      - name: Print versions
         run: |
           cmake --version
           make --version

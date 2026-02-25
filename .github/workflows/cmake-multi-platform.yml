@@ -77,12 +77,21 @@ jobs:
       - name: MSYS2 PATH
         run: |
           $env:Path
+          echo "=== In ==="
+          cat $env:GITHUB_PATH
+          echo "==="
           @("C:\msys64\usr\bin`nC:\msys64\ucrt64\bin") `
             | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
+          echo "=== Out ==="
+          cat $env:GITHUB_PATH
+          echo "==="
 
       - name: Show PATH
         run: |
           $env:Path
+          echo "=== Check ==="
+          cat $env:GITHUB_PATH
+          echo "==="
 
       - name: Check versions
         run: |
@@ -90,7 +99,6 @@ jobs:
           make --version
           ar --version
           choco -h
-          pacman -V
 
         # pacman -V
         # occ --version

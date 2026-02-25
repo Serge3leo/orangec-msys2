@@ -82,7 +82,11 @@ jobs:
       - name: Install MSYS make, ar, etc
         run: |
           pacman -S --noconfirm binutils make
-          choco install orangec
+          choco install --yes --no-progress orangec
+          @("ORANGEC=C:\Program Files (x86)\OrangeC") `
+            | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8
+          @("C:\Program Files (x86)\OrangeC\bin") `
+            | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
 
       - name: Check versions
         run: |

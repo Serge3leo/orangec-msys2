@@ -1,3 +1,4 @@
+---
 name: OrangeC MSYS2
 description: Setup OrangeC with pre-installed MSYS2 for CMake
 inputs:

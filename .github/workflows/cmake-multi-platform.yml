@@ -43,6 +43,7 @@ jobs:
           - c_compiler: occ
             cpp_compiler: occ
             os: windows-latest
+            generator: "MSYS Makefiles"
             platform: "win32"
 
     steps:
@@ -74,7 +75,7 @@ jobs:
                >> "$GITHUB_OUTPUT"
 
       - name: Check versions
-        run: >
+        run: |
           cmake --version
           make --version
           ar --version
@@ -91,6 +92,7 @@ jobs:
           -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
           -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          -G "${{ matrix.generator }}"
           -S ${{ github.workspace }}
           ${{ matrix.cmake_add }}
 

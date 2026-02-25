@@ -81,7 +81,7 @@ jobs:
 
       - name: Install MSYS make, ar, etc
         run: |
-          pacman -Sy binutils make
+          pacman -S --noconfirm binutils make
 
       - name: Check versions
         run: |

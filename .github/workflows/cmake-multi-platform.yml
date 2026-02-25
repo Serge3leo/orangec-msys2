@@ -82,6 +82,7 @@ jobs:
       - name: Install MSYS make, ar, etc
         run: |
           pacman -S --noconfirm binutils make
+          choco install orangec
 
       - name: Check versions
         run: |
@@ -90,9 +91,7 @@ jobs:
           ar --version
           choco -h
           pacman -V
-
-        # pacman -V
-        # occ --version
+          occ --version
 
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only

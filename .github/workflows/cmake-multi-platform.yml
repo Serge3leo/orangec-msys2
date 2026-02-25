@@ -78,12 +78,12 @@ jobs:
         run: |
           $env:Path
           echo "=== In ==="
-          cat $GITHUB_PATH
+          cat $env:GITHUB_PATH
           echo "==="
           @("C:\msys64\usr\bin`nC:\msys64\ucrt64\bin") + `
-            (Get-Content $GITHUB_PATH) | Set-Content $GITHUB_PATH
+            (Get-Content $env:GITHUB_PATH) | Set-Content $env:GITHUB_PATH
           echo "=== Out ==="
-          cat $GITHUB_PATH
+          cat $env:GITHUB_PATH
           echo "==="
 
       - name: Check versions

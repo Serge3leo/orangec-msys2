@@ -74,12 +74,27 @@ jobs:
           echo "build-output-dir=${{ github.workspace }}/build" \
                >> "$GITHUB_OUTPUT"
 
+      - name: MSYS2 PATH
+        run: |
+          $env:Path
+          echo "=== In ==="
+          cat $GITHUB_PATH
+          echo "==="
+          @("C:\msys64\usr\bin`nC:\msys64\ucrt64\bin") + `
+            (Get-Content $GITHUB_PATH) | Set-Content $GITHUB_PATH
+          echo "=== Out ==="
+          cat $GITHUB_PATH
+          echo "==="
+
       - name: Check versions
         run: |
           cmake --version
           make --version
           ar --version
-          occ --version
+          choco -h
+
+        # pacman -V
+        # occ --version
 
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only

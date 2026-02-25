@@ -93,7 +93,8 @@ jobs:
           cmake --version
           make --version
           ar --version
-          choco -h
+          echo "choco --version"
+          choco --version
           pacman -V
           occ --version
 
@@ -135,6 +136,8 @@ jobs:
         working-directory: ${{ steps.strings.outputs.build-output-dir }}
         if: ${{ matrix.platform == 'win32' }}
         run: |
+          dir
+          pwd
           hello
           hello++
           bsd_echo my args

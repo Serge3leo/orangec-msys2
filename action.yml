@@ -1,0 +1,29 @@
+---
+name: OrangeC MSYS2
+description: Setup OrangeC with pre-installed MSYS2 for CMake
+inputs:
+  version:
+    required: false
+    description: A specific version to install. Defaults to last (unspecified).
+runs:
+  using: composite
+  steps:
+    - name: MSYS2 PATH
+      shell: pwsh
+      run: |
+        "MSYSTEM=UCRT64" `
+          | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8
+        "C:\msys64\usr\bin`nC:\msys64\ucrt64\bin" `
+          | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
+    - name: Install MSYS make, ar, etc
+      shell: pwsh
+      run: |
+        pacman -S --noconfirm binutils make
+        choco install --yes --no-progress `
+                orangec --version=${{ inputs.version }}
+          # Hard code "%ORANGEC%\varsocc.bat"
+        $ORANGEC = "C:\Program Files (x86)\OrangeC"
+        "ORANGEC=$ORANGEC" `
+          | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8
+        "$ORANGEC\bin" `
+          | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8

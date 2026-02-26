@@ -10,7 +10,7 @@
   - uses: Serge3leo/orangec-msys2@v0
 ```
 
-Или
+или
 
 ```
   - uses: Serge3leo/orangec-msys2@v0

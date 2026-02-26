@@ -10,7 +10,7 @@ pre-installed MSYS2 image.
   - uses: Serge3leo/orangec-msys2@v0
 ```
 
-Or
+or
 
 ```
   - uses: Serge3leo/orangec-msys2@v0
@@ -19,7 +19,7 @@ Or
       verbose: on
 ```
 
-An example with a CMake project can be seen:
+An example with a CMake project can be see:
   - [cmake-multi-platform.yml](.github/workflows/cmake-multi-platform.yml);
   - [C23/C++14 platform independent implementation of C2y countof()](
     https://github.com/Serge3leo/countof_ns/blob/main/.github/workflows/cmake-multi-platform.yml).

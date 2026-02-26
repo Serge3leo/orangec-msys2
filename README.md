@@ -36,7 +36,7 @@ available versions is given below:
   - Type: `boolean`
   - Default: `false`
 
-Show the paths and versions of the main components: `occ`, `make', `cmake', ...
+Show the paths and versions of the main components: `occ`, `make`, `cmake`, ...
 
 # Contributing
 Issues or PRs are accepted and welcome.

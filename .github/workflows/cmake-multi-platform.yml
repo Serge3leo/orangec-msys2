@@ -77,17 +77,7 @@ jobs:
       - name: Test action (Setup OrangeC with pre-installed MSYS2 for CMake)
         uses: ./
         with:
-          verbose: 'off'
-
-      - name: Print versions
-        run: |
-          cmake --version
-          make --version
-          ar --version
-          echo "choco --version"
-          choco --version
-          pacman -V
-          occ --version
+          verbose: 'on'
 
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only

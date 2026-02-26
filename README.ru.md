@@ -1,7 +1,6 @@
 [![CMake on multiple platforms](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml)
 
 # orangec-msys2
-
 Устанавливает компилятор OrangeC и настраивает пути и переменные для
 возможности использования CMake генератора "MSYS Makefiles" совместно с
 предустановленным в образе MSYS2.
@@ -26,16 +25,15 @@
     (https://github.com/Serge3leo/countof_ns/blob/main/.github/workflows/cmake-multi-platform.yml).
 
 # Параметры
-
 ## version
-  - Тип `string`
+  - Тип: `string`
 
 Если не задан, устанавливается последняя доступная версия. Список доступных
 версии приведён:
 [https://community.chocolatey.org/packages/orangec](https://community.chocolatey.org/packages/orangec).
 
 ## verbose
-  - Тип `string`
+  - Тип: `string`
   - Возможные значения: `on | off`
   - Значение по умолчанию: `off`
 
@@ -44,5 +42,6 @@
 # Участие
 Замечания (issues), добавления или исправления (pr) - принимаются и
 приветствуются.
+
 # Лицензия
 [BSD-2-Clause © 2025 Сергей Леонтьев (leo@sai.msu.ru).](LICENSE)

@@ -27,22 +27,27 @@ jobs:
 
       fail-fast: false
 
-      # Set up a matrix to run the following 1 configurations:
+      # Set up a matrix to run the following 3 configurations:
       #
       # 1. <Latest OrangeC compiler toolchain on the default runner image,
-      # Windows, "MSYS Makefiles">
+      # windows-2025-vs2026, "MSYS Makefiles">
+      #
+      # 2. <Latest OrangeC compiler toolchain on the default runner image,
+      # windows-2025, "MSYS Makefiles"> (windows-latest at 26.02.2026)
+      #
+      # 3. <Latest OrangeC compiler toolchain on the default runner image,
+      # windows-2022, "MSYS Makefiles">
       #
       # To add more build types (Release, Debug, RelWithDebInfo, etc.)
       # customize the build_type list.
 
       matrix:
         c_compiler: [occ]
-        os: [windows-latest]
+        os: [windows-2025-vs2026 windows-2025 windows-2022]
         build_type: [Release]
         include:
           - c_compiler: occ
             cpp_compiler: occ
-            os: windows-latest
             generator: "MSYS Makefiles"
             platform: "win32"
 

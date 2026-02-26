@@ -8,8 +8,9 @@ inputs:
   verbose:
     required: false
     description: >
-      Show version and location `occ`, `make`, `cmake` ... form PATH.
-    default: false
+      Show version and location `occ`, `make`,
+      `cmake` ... form PATH. ['off', 'on']
+    default: 'off'
 runs:
   using: composite
   steps:
@@ -33,7 +34,7 @@ runs:
         "$ORANGEC\bin" `
           | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
     - name: Show version
-      if: ${{ inputs.verbose == true }}
+      if: ${{ inputs.verbose == 'on' }}
       shell: pwsh
       run: |
         "ORANGEC=$env:ORANGEC"

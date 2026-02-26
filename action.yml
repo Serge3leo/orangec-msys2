@@ -17,7 +17,7 @@ runs:
     - name: MSYS2 PATH
       shell: pwsh
       run: |
-        "MSYSTEM=UCRT64" `
+        "env.MSYSTEM=UCRT64" `
           | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8
         "C:\msys64\usr\bin`nC:\msys64\ucrt64\bin" `
           | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
@@ -29,12 +29,12 @@ runs:
                 orangec --version=${{ inputs.version }}
           # Hard code "%ORANGEC%\varsocc.bat"
         $ORANGEC = "C:\Program Files (x86)\OrangeC"
-        "ORANGEC=$ORANGEC" `
+        "env.ORANGEC=$ORANGEC" `
           | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8
         "$ORANGEC\bin" `
           | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
     - name: Show version
-      if: ${{ inputs.verbose != false }}
+      if: ${{ fromJSON(inputs.verbose) }}
       shell: pwsh
       run: |
         "ORANGEC=" + $env:ORANGEC

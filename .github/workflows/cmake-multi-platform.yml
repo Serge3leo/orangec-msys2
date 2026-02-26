@@ -76,6 +76,8 @@ jobs:
 
       - name: Test action (Setup OrangeC with pre-installed MSYS2 for CMake)
         uses: ./
+        with:
+          verbose: "off"
 
       - name: Print versions
         run: |

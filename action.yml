@@ -37,10 +37,10 @@ runs:
       if: ${{ fromJSON(inputs.verbose) }}
       shell: pwsh
       run: |
-        "ORANGEC=" + $env:ORANGEC
+        "ORANGEC=$env:ORANGEC"
         get-command occ
         occ --version
-        "MSYSTEM=" + $env:MSYSTEM
+        "MSYSTEM=$env:MSYSTEM"
         get-command ar
         ar --version
         get-command make

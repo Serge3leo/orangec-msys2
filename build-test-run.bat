@@ -11,8 +11,13 @@ cmake -B %build_output_dir% ^
         -DCMAKE_BUILD_TYPE=%build_type% ^
         -G "MSYS Makefiles" ^
         -S .
+if errorlevel 1 exit /b
 cmake --build %build_output_dir% --config %build_type%
+if errorlevel 1 exit /b
 cd %build_output_dir%
 ctest --build-config %build_type%
+if errorlevel 1 exit /b
 hello
+if errorlevel 1 exit /b
 hello++
+if errorlevel 1 exit /b

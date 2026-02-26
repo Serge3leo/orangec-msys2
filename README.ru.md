@@ -21,8 +21,8 @@
 
 Пример совместного использование в проекте CMake можно увидеть:
   - [cmake-multi-platform.yml](.github/workflows/cmake-multi-platform.yml);
-  - [C23/C++14 platform independent implementation of C2y countof()];
-    (https://github.com/Serge3leo/countof_ns/blob/main/.github/workflows/cmake-multi-platform.yml).
+  - [C23/C++14 platform independent implementation of C2y countof()](
+    https://github.com/Serge3leo/countof_ns/blob/main/.github/workflows/cmake-multi-platform.yml).
 
 # Параметры
 ## version

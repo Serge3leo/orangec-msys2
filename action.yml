@@ -18,9 +18,9 @@ runs:
       shell: pwsh
       run: |
         "env.MSYSTEM=UCRT64" `
-          | Out-File -FilePath .env -Encoding utf8 -Append
+          | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
         "C:\msys64\usr\bin`nC:\msys64\ucrt64\bin" `
-          | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
+          | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
     - name: Install MSYS make, ar, etc
       shell: pwsh
       run: |
@@ -30,9 +30,9 @@ runs:
           # Hard code "%ORANGEC%\varsocc.bat"
         $ORANGEC = "C:\Program Files (x86)\OrangeC"
         "env.ORANGEC=$ORANGEC" `
-          | Out-File -FilePath .env -Encoding utf8 -Append
+          | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
         "$ORANGEC\bin" `
-          | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
+          | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
     - name: Show version
       if: ${{ fromJSON(inputs.verbose) }}
       shell: pwsh

@@ -33,9 +33,8 @@
 [https://community.chocolatey.org/packages/orangec](https://community.chocolatey.org/packages/orangec).
 
 ## verbose
-  - Тип: `string`
-  - Возможные значения: `on | off`
-  - Значение по умолчанию: `off`
+  - Тип: `boolean`
+  - Значение по умолчанию: `false`
 
 Печатает пути и версии основных компонент: `occ`, `make`, `cmake`, ...
 

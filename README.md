@@ -33,9 +33,8 @@ available versions is given below:
 [https://community.chocolatey.org/packages/orangec](https://community.chocolatey.org/packages/orangec).
 
 ## verbose
-  - Type: `string`
-  - Allowed values: `on | off`
-  - Default: `off`
+  - Type: `boolean`
+  - Default: `false`
 
 Show the paths and versions of the main components: `occ`, `make', `cmake', ...
 

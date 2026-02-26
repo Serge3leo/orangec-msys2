@@ -78,7 +78,7 @@ jobs:
         uses: ./
         with:
           version: 6.73.1
-          verbose: false
+          verbose: true
 
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only

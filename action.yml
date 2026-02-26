@@ -10,7 +10,7 @@ inputs:
     description: >
       Show version and location `occ`, `make`,
       `cmake` ... form PATH. ['off', 'on']
-    default: 'off'
+    default: off
 runs:
   using: composite
   steps:

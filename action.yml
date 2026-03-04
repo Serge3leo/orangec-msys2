@@ -103,19 +103,11 @@ runs:
     - name: OrangeC environments variables
       shell: pwsh
       run: |
-        dir "${{ steps.od.outputs.od }}"
-        dir "${{ steps.od.outputs.od }}\varsocc.bat"
-        type "${{ steps.od.outputs.od }}\varsocc.bat"
-        cmd.exe /c "`"${{ steps.od.outputs.od }}\varsocc.bat`" && set" | `
-          .{process{
-            if ($_ -match '^((orangec|path)[^=]*)=(.*)') {
-              Set-Variable ("od_" + $matches[1]) $matches[3]
-            }
-          }}
-        $od_path = $od_path.Substring(0, $od_path.IndexOf(';'))
-        "ORANGEC=$od_orangec" `
+        # https://orangec.readthedocs.io/en/latest/Tools/#tools-setup
+
+        "ORANGEC=${{ steps.od.outputs.od }}" `
           | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-        "$od_path`n" `
+        "${{ steps.od.outputs.od }}\bin`n" `
           | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
     - name: Show version

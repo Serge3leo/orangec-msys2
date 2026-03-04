@@ -130,5 +130,3 @@ runs:
             &$prg --version | Select-Object -First 1
           } catch {}
         }
-        dir "$env:ORANGEC"
-        type "$env:ORANGEC\varsocc.bat"

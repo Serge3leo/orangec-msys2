@@ -1,4 +1,4 @@
-[![CMake on multiple platforms](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml)
+[![CMake on multiple platforms](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml/badge.svg?branch=main)](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml)
 
 # orangec-msys2
 Installs the OrangeC compiler and configures paths and environment variables
@@ -25,18 +25,34 @@ An example with a CMake project can be see:
     https://github.com/Serge3leo/countof_ns/blob/main/.github/workflows/cmake-multi-platform.yml).
 
 # Options
-## version
-  - Type: `string`
+## cache
+  - Type: `boolean`
+  - Default: `true`
 
-If not specified, the latest available version is installed. The list of
-available versions is given below:
-[https://community.chocolatey.org/packages/orangec](https://community.chocolatey.org/packages/orangec).
+To speed up re-use, cache `MSYS2` and the installation directory Pelles C.
+
+## msystem
+  - Type: `string`
+  - Allowed values: `msys | mingw64 | mingw32 | ucrt64 |
+    clang64 | clangarm64 | skip`
+  - Default: `mingw64`
+
+Sets the value of the environment variable [`MSYSTEM`](
+https://www.msys2.org/docs/environments) and `PATH`.  Case is ignored.  If
+equal to `skip`, then the MSYS2 configuration is skipped.
 
 ## verbose
   - Type: `boolean`
   - Default: `false`
 
 Show the paths and versions of the main components: `occ`, `make`, `cmake`, ...
+
+## version
+  - Type: `string`
+
+If not specified, the latest available version is installed. The list of
+available versions is given below:
+[https://community.chocolatey.org/packages/orangec](https://community.chocolatey.org/packages/orangec).
 
 # Contributing
 Issues or PRs are accepted and welcome.
@@ -46,4 +62,4 @@ Sorry for my best English. Alas, this file is actually a yandex translation of
 [README.ru.md](README.ru.md) with minimal editorial changes.
 
 # License
-[BSD-2-Clause © 2025 Сергей Леонтьев (leo@sai.msu.ru).](LICENSE)
+[BSD-2-Clause © 2026 Сергей Леонтьев (leo@sai.msu.ru).](LICENSE)

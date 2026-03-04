@@ -1,4 +1,4 @@
-[![CMake on multiple platforms](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml)
+[![CMake on multiple platforms](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml/badge.svg?branch=main)](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml)
 
 # orangec-msys2
 Устанавливает компилятор OrangeC и настраивает пути и переменные для
@@ -25,12 +25,22 @@
     https://github.com/Serge3leo/countof_ns/blob/main/.github/workflows/cmake-multi-platform.yml).
 
 # Параметры
-## version
-  - Тип: `string`
+## cache
+  - Тип: `boolean`
+  - Значение по умолчанию: `true`
 
-Если не задан, устанавливается последняя доступная версия. Список доступных
-версии приведён:
-[https://community.chocolatey.org/packages/orangec](https://community.chocolatey.org/packages/orangec).
+Для ускорения повторного использования, кэшировать `MSYS2` и каталог установки
+Pelles C.
+
+## msystem
+  - Тип: string
+  - Допустимые значения: `msys | mingw64 | mingw32 | ucrt64 | clang64 |
+    clangarm64 | skip`
+  - Значение по умолчанию: `mingw64`
+
+Задаёт значение переменной окружения [`MSYSTEM`](
+https://www.msys2.org/docs/environments) и `PATH`.  Регистр игнорируется.  Если
+равно `skip`, то настройка MSYS2 пропускается.
 
 ## verbose
   - Тип: `boolean`
@@ -38,9 +48,16 @@
 
 Печатает пути и версии основных компонент: `occ`, `make`, `cmake`, ...
 
+## version
+  - Тип: `string`
+
+Если не задан, устанавливается последняя доступная версия. Список доступных
+версии приведён:
+[https://community.chocolatey.org/packages/orangec](https://community.chocolatey.org/packages/orangec).
+
 # Участие
 Замечания (issues), добавления или исправления (pr) - принимаются и
 приветствуются.
 
 # Лицензия
-[BSD-2-Clause © 2025 Сергей Леонтьев (leo@sai.msu.ru).](LICENSE)
+[BSD-2-Clause © 2026 Сергей Леонтьев (leo@sai.msu.ru).](LICENSE)

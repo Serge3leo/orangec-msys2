@@ -42,29 +42,27 @@ jobs:
       # customize the build_type list.
 
       matrix:
+        version: ["", 6.73.1, 6.0.42.1]
         c_compiler: [occ]
-        os: [windows-2025-vs2026, windows-2025, windows-2022]
+        cpp_compiler: [occ]
         build_type: [Release]
+        generator: ["MSYS Makefiles"]
+        platform: [win32]
+        cmake_add: [--debug-trycompile]
         include:
-          - c_compiler: occ
-            cpp_compiler: occ
-            generator: "MSYS Makefiles"
-            platform: "win32"
+          - version: ""  # Last 7.0.7 at Mar 5, 2026
+            os: windows-2025-vs2026
+          - version: 6.73.1
+            os: windows-2025  # windows-latest at Mar 5, 2026
+          - version: 6.0.42.1
+            os: windows-2022
 
     steps:
       - uses: actions/checkout@v6
 
-      - uses: actions/setup-python@v6
-        with:
-          python-version: '3.13'
-
-      - name: Install python module
-        run: |
-          python -c "import sys; print(sys.version); print(sys.executable)"
-          python -m pip install yamllint
-
       - name: Lint
         run: |
+          python -m pip install yamllint
           python -m yamllint --list-file .
           python -m yamllint .
 
@@ -82,7 +80,7 @@ jobs:
       - name: Test action (Setup OrangeC with pre-installed MSYS2 for CMake)
         uses: ./
         with:
-          version: 6.73.1
+          version: ${{ matrix.version }}
           verbose: true
 
       - name: Configure CMake

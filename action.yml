@@ -41,7 +41,7 @@ runs:
         pacboy: >-
           binutils:p
           make:p
-          ${{ case(fromJSON(inputs.verbose), 'cmake:p', '') }}
+          ${{ case(fromJSON(inputs.cmake-update), 'cmake:p', '') }}
 
     - name: MSYS2 PATH
       if: ${{ 'skip' != inputs.msystem }}
@@ -103,6 +103,9 @@ runs:
     - name: OrangeC environments variables
       shell: pwsh
       run: |
+        dir "${{ steps.od.outputs.od }}"
+        dir "${{ steps.od.outputs.od }}\varsocc.bat"
+        type "${{ steps.od.outputs.od }}\varsocc.bat"
         cmd.exe /c "`"${{ steps.od.outputs.od }}\varsocc.bat`" && set" | `
           .{process{
             if ($_ -match '^((orangec|path)[^=]*)=(.*)') {

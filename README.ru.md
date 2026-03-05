@@ -6,7 +6,7 @@
 
 ## ПРЕДУПРЕЖДЕНИЕ
 Версия 6.0.42.1 (6.42.1) от Chocolatey Software несовместима с модулями
-поддержки CMake. Вы можете использовать версию 6.73.1 или выше.
+поддержки CMake.  Вы можете использовать версию 6.73.1 или выше.
 
 # Использование
 ```
@@ -41,6 +41,14 @@ OrangeC.
 
 Устанавливает в MSYS2 последнюю версию CMake.
 
+## install
+  - Тип: `string`
+  - Допустимые значения: список пакетов, разделенных пробелами
+
+Установка дополнительных пакетов после обновления системы поддерживается с
+помощью опции install.  См. [Setup MSYS2, install](
+https://github.com/msys2/setup-msys2?tab=readme-ov-file#install).
+
 ## key-prefix
   - Тип: `string`
 
@@ -56,6 +64,14 @@ OrangeC.
 https://www.msys2.org/docs/environments) и `PATH`.  Регистр игнорируется.  Если
 равно `skip`, то настройка MSYS2 пропускается.
 
+## pacboy
+  - Тип: `string`
+  - Допустимые значения: список пакетов, разделенных пробелами
+
+Установка дополнительных пакетов после обновления системы поддерживается с
+помощью опции pacboy.  См. [Setup MSYS2, pacboy](
+https://github.com/msys2/setup-msys2?tab=readme-ov-file#pacboy).
+
 ## verbose
   - Тип: `boolean`
   - Значение по умолчанию: `false`
@@ -65,7 +81,7 @@ https://www.msys2.org/docs/environments) и `PATH`.  Регистр игнори
 ## version
   - Тип: `string`
 
-Если не задан, устанавливается последняя доступная версия. Список доступных
+Если не задан, устанавливается последняя доступная версия.  Список доступных
 версии приведён:
 [https://community.chocolatey.org/packages/orangec](https://community.chocolatey.org/packages/orangec).
 

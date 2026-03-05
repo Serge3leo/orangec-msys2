@@ -1,6 +1,9 @@
 ---
 name: OrangeC MSYS2
 description: Setup OrangeC with MSYS2 for CMake
+branding:
+  color: blue
+  icon: terminal
 inputs:
   cache:
     required: false
@@ -10,6 +13,11 @@ inputs:
     required: false
     description: Instal last CMake version from MSYS2
     default: false
+  install:
+    required: false
+    description: >-
+      After installation and/or update, install additional packages through
+      pacman
   key-prefix:
     required: false
     description: Add prefix to cache key (for refresh or identification)
@@ -19,6 +27,11 @@ inputs:
       Variant of the environment to set by default: msys, mingw32, mingw64,
       ucrt64, clang64, clangarm64 or skip
     default: mingw64
+  pacboy:
+    required: false
+    description: >-
+      After installation and/or update, install additional packages through
+      pacboy
   verbose:
     required: false
     description: >-
@@ -37,10 +50,13 @@ runs:
       with:
         msystem: ${{ inputs.msystem }}
         cache: ${{ inputs.cache }}
+        # Workaround, `setup-msys2` don't accepted empty string
+        install: ${{ case('' == inputs.install, 'pactoys', inputs.install) }}
         pacboy: >-
           binutils:p
           make:p
           ${{ case(fromJSON(inputs.cmake-update), 'cmake:p', '') }}
+          ${{ inputs.pacboy }}
 
     - name: MSYS2 PATH
       if: ${{ 'skip' != inputs.msystem }}

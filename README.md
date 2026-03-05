@@ -6,7 +6,7 @@ the ability to use the CMake "MSYS Makefiles" generator.
 
 ## WARNING
 Version 6.0.42.1 (6.42.1) of Chocolatey Software is incompatible with CMake
-support modules. You can use version 6.73.1 or higher.
+support modules.  You can use version 6.73.1 or higher.
 
 # Usage
 ```
@@ -40,6 +40,14 @@ To speed up re-use, cache `MSYS2` and the installation directory OrangeC.
 
 Instal last CMake version from MSYS2.
 
+## install
+  - Type: `string`
+  - Allowed values: a whitespace separated list of packages
+
+Installing additional packages after updating the system is supported through
+option install.  See [Setup MSYS2, install](
+https://github.com/msys2/setup-msys2?tab=readme-ov-file#install).
+
 ## key-prefix
   - Type: `string`
 
@@ -55,6 +63,14 @@ Sets the value of the environment variable [`MSYSTEM`](
 https://www.msys2.org/docs/environments) and `PATH`.  Case is ignored.  If
 equal to `skip`, then the MSYS2 configuration is skipped.
 
+## pacboy
+  - Type: `string`
+  - Allowed values: a whitespace separated list of packages
+
+Installing additional packages with pacboy after updating the system is
+supported through option pacboy.  See [Setup MSYS2, pacboy](
+https://github.com/msys2/setup-msys2?tab=readme-ov-file#pacboy).
+
 ## verbose
   - Type: `boolean`
   - Default: `false`
@@ -64,7 +80,7 @@ Show the paths and versions of the main components: `occ`, `make`, `cmake`, ...
 ## version
   - Type: `string`
 
-If not specified, the latest available version is installed. The list of
+If not specified, the latest available version is installed.  The list of
 available versions is given below:
 [https://community.chocolatey.org/packages/orangec](https://community.chocolatey.org/packages/orangec).
 
@@ -72,7 +88,7 @@ available versions is given below:
 Issues or PRs are accepted and welcome.
 
 # Disclaimer
-Sorry for my best English. Alas, this file is actually a yandex translation of
+Sorry for my best English.  Alas, this file is actually a yandex translation of
 [README.ru.md](README.ru.md) with minimal editorial changes.
 
 # License

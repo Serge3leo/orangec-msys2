@@ -76,8 +76,8 @@ jobs:
           version: ${{ matrix.version }}
           # verbose: true
           # cmake-update: true
-          install: patch
-          pacboy: clang:p
+          # install: patch
+          # pacboy: clang:p
 
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only

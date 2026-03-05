@@ -5,8 +5,8 @@ It installs the OrangeC compiler, MSYS2, and configures paths and variables for
 the ability to use the CMake "MSYS Makefiles" generator.
 
 ## WARNING
-Version 6.0.42.1 (6.42.1) of Chocolatey Software is incompatible with CMake.
-You can use version 6.73.1 or higher.
+Version 6.0.42.1 (6.42.1) of Chocolatey Software is incompatible with CMake
+support modules. You can use version 6.73.1 or higher.
 
 # Usage
 ```
@@ -43,7 +43,7 @@ Instal last CMake version from MSYS2.
 ## key-prefix
   - Type: `string`
 
-Add prefix to cache key (for refresh or identification).
+Add prefix to cache key (for refresh version, identification etc).
 
 ## msystem
   - Type: `string`

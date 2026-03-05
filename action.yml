@@ -22,8 +22,7 @@ inputs:
   verbose:
     required: false
     description: >-
-      Show version and location `occ`, `make`,
-      `cmake` ... form PATH.
+      Show version and location `occ`, `make`, `cmake` ... form PATH.
     default: false
   version:
     required: false

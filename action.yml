@@ -50,7 +50,7 @@ runs:
       with:
         msystem: ${{ inputs.msystem }}
         cache: ${{ inputs.cache }}
-        install: ${{ inputs.install }}
+        install: ${{ case('' == inputs.install, 'pactoys', inputs.install }}
         pacboy: >-
           binutils:p
           make:p

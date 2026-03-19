@@ -14,22 +14,22 @@
 
 # Использование
 ## Установка
-```
-cmake -P OrangeC\\install.cmake
+```powershell
+cmake -P OrangeC\install.cmake
 ```
 
 Если не установлены.  Исправляет модули в `CMAKE_ROOT`.
 
 ## Удаление
-```
-cmake -P OrangeC\\uninstall.cmake
+```powershell
+cmake -P OrangeC\uninstall.cmake
 ```
 
 Отменяет исправления модулей из `CMAKE_ROOT` (с точностью до CRLF).
 
 ## Статус
-```
-cmake -P OrangeC\\detect.cmake
+```powershell
+cmake -P OrangeC\detect.cmake
 ```
 
 Проверяет наличие поддержки функций для текущего CMake.

@@ -1,0 +1,38 @@
+# vim:set sw=4 ts=8 et fileencoding=utf8:
+# SPDX-License-Identifier: BSD-2-Clause
+# SPDX-FileCopyrightText: 2026 Сергей Леонтьев (leo@sai.msu.ru)
+
+file(REAL_PATH "_ids_.cmake" ids BASE_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}")
+include(${ids})
+
+message("detect: CMAKE_ROOT=${CMAKE_ROOT}")
+file(READ "${CMAKE_ROOT}/Modules/Compiler/OrangeC.cmake" m)
+file(READ "${CMAKE_ROOT}/Modules/Compiler/OrangeC-C.cmake" m_c)
+file(READ "${CMAKE_ROOT}/Modules/Compiler/OrangeC-CXX.cmake" m_cxx)
+
+apply_patch("${m}" OrangeC_1 m_n ok)
+if (NOT ok)
+    message(FATAL_ERROR "Can't apply patch for '${OrangeC_1_detect}'")
+endif ()
+if (NOT "${m_n}" MATCHES "${OrangeC_1_detect}")
+    message(FATAL_ERROR "ok=${ok} m_n=${m_n}")
+endif ()
+apply_patch("${m_n}" OrangeC_2 m_n ok)
+if (NOT ${ok})
+    message(FATAL_ERROR "Can't apply patch for '${OrangeC_2_detect}'")
+endif ()
+if (NOT "${m_n}" MATCHES "${OrangeC_2_detect}")
+    message(FATAL_ERROR "ok=${ok} m_n=${m_n}")
+endif ()
+apply_patch("${m_c}" OrangeC_C m_c_n ok)
+if (NOT ok)
+    message(FATAL_ERROR "Can't apply patch for '${OrangeC_C_detect}'")
+endif ()
+apply_patch("${m_cxx}" OrangeC_CXX m_cxx_n ok)
+if (NOT ok)
+    message(FATAL_ERROR "Can't apply patch for '${OrangeC_CXX_detect}'")
+endif ()
+
+save("${CMAKE_ROOT}/Modules/Compiler/OrangeC-CXX.cmake" "pre-install" "${m_cxx_n}")
+save("${CMAKE_ROOT}/Modules/Compiler/OrangeC-C.cmake" "pre-install" "${m_c_n}")
+save("${CMAKE_ROOT}/Modules/Compiler/OrangeC.cmake" "pre-install" "${m_n}")

@@ -15,21 +15,21 @@ subdirectories `CMAKE_ROOT` of the current CMake.
 # Usage
 ## Install
 ```
-cmake -P OrangeC\install.cmake
+cmake -P OrangeC\\install.cmake
 ```
 
 If not installed, it patch the modules in `CMAKE_ROOT`.
 
 ## Uninstall
 ```
-cmake -P OrangeC\uninstall.cmake
+cmake -P OrangeC\\uninstall.cmake
 ```
 
 Undoes module fixes from `CMAKE_ROOT` (up to CRLF).
 
 ## Check status
 ```
-cmake -P OrangeC\detect.cmake
+cmake -P OrangeC\\detect.cmake
 ```
 
 Checks for feature support for the current CMake.

@@ -48,7 +48,7 @@ runs:
   using: composite
   steps:
     - name: Check Orange C version compatible with CMake
-      if: ${{ 'no' != inputs.cmake-module }}
+      if: ${{ 'no' != inputs.cmake-module && '' != inputs.version }}
       shell: pwsh
       run: |
         $ov = "${{ inputs.version }}" -replace "[^0-9.]*$"

@@ -1,0 +1,59 @@
+<!-- vim:set sw=4 ts=8 fileencoding=utf8:
+ SPDX-License-Identifier: BSD-2-Clause
+ SPDX-FileCopyrightText: 2026 Сергей Леонтьев (leo@sai.msu.ru)
+ -->
+
+# Patches for Orange C support modules CMake
+They patches support for:
+- Dynamic libraries;
+- Windows resource files `.rc`;
+- Selecting C/C++ standards versions.
+
+The installation requires permissions to create and modify files in the
+subdirectories `CMAKE_ROOT` of the current CMake.
+
+# Usage
+## Install
+```
+cmake -P OrangeC\install.cmake
+```
+
+If not installed, it patch the modules in `CMAKE_ROOT`.
+
+## Uninstall
+```
+cmake -P OrangeC\uninstall.cmake
+```
+
+Undoes module fixes from `CMAKE_ROOT` (up to CRLF).
+
+## Check status
+```
+cmake -P OrangeC\detect.cmake
+```
+
+Checks for feature support for the current CMake.
+
+## Known limitations
+
+- The rules for creating dynamic libraries do not support the target property
+  `WINDOWS_EXPORT_ALL_SYMBOLS` and the variable
+  `CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS`. If necessary, you will need to manually
+  use the `--export-all-symbols` switch, or `add_link_options(
+  "$<IF:$<BOOL:$<TARGET_PROPERTY:WINDOWS_EXPORT_ALL_SYMBOLS>>,--export-all-symbols,>")`;
+
+- Support for the `GenerateExportHeader` module (i.e. `__declspec(dllexport)`
+  and `__declspec(dllimport)`) does not work for version 6.73 or lower (the
+  reasons for this are unclear);
+
+- Orange C does not support `.def` export files;
+
+- Support for `.rc` resource files for CMake is only implemented for version
+  7.0 or higher.
+
+# Links
+Links to CMake issues and/or pull requests will be provided later.
+
+# Disclaimer
+Sorry for my best English.  Alas, this file is actually a yandex translation of
+[README.ru.md](README.ru.md) with minimal editorial changes.

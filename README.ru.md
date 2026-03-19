@@ -4,9 +4,13 @@
 Устанавливает компилятор OrangeC, MSYS2 и настраивает пути и переменные для
 возможности использования CMake генератора "MSYS Makefiles".
 
+Смотрите так же [Исправления CMake модулей поддержки Orange C](
+OrangeC/README.ru.md).
+
 ## ПРЕДУПРЕЖДЕНИЕ
 Версия 6.0.42.1 (6.42.1) от Chocolatey Software несовместима с модулями
-поддержки CMake.  Вы можете использовать версию 6.73.1 или выше.
+поддержки CMake.  Вы можете использовать версию 6.73.1 (частично совместима),
+7.0.7 или выше.
 
 # Использование
 ```
@@ -23,6 +27,8 @@
 ```
 
 Пример совместного использование в проекте CMake можно увидеть:
+  - [Learn CMake on GitHub multiple platforms](
+    https://github.com/Serge3leo/learn-cmake/blob/main/.github/workflows/learn_cmake.yml);
   - [cmake-multi-platform.yml](.github/workflows/cmake-multi-platform.yml);
   - [C23/C++14 platform independent implementation of C2y countof()](
     https://github.com/Serge3leo/countof_ns/blob/main/.github/workflows/cmake-multi-platform.yml).
@@ -34,6 +40,27 @@
 
 Для ускорения повторного использования, кэшировать `MSYS2` и каталог установки
 OrangeC.
+
+Возможно будет полезно использовать дополнительные рабочие процессы для
+удаления тех кэшей, использование которых становится маловероятным (после
+закрытия PR и т.п.). Шаблоны таких процессов: [Clean Cache Action](
+https://github.com/marketplace/actions/clean-cache) или
+https://github.com/marketplace/actions/clean-cache-action .
+
+## cmake-module
+  - Тип: `string`
+  - Допустимые значения: `check | always | not`
+  - Значение по умолчанию: `check`
+
+### always
+Всегда исправлять модули поддержки Orange C.
+
+### check
+Проверить наличие.  Исправлять модули поддержки Orange C, если функции не
+поддерживаются.
+
+### no
+Не исправлять модули поддержки Orange C.
 
 ## cmake-update
   - Тип: `boolean`

@@ -4,9 +4,12 @@
 It installs the OrangeC compiler, MSYS2, and configures paths and variables for
 the ability to use the CMake "MSYS Makefiles" generator.
 
+See also [Patches for Orange C support modules CMake]( OrangeC/README.md).
+
 ## WARNING
 Version 6.0.42.1 (6.42.1) of Chocolatey Software is incompatible with CMake
-support modules.  You can use version 6.73.1 or higher.
+support modules.  You can use version 6.73.1 (partially compatible),
+7.0.7, or higher.
 
 # Usage
 ```
@@ -23,6 +26,8 @@ or
 ```
 
 An example with a CMake project can be see:
+  - [Learn CMake on GitHub multiple platforms](
+    https://github.com/Serge3leo/learn-cmake/blob/main/.github/workflows/learn_cmake.yml);
   - [cmake-multi-platform.yml](.github/workflows/cmake-multi-platform.yml);
   - [C23/C++14 platform independent implementation of C2y countof()](
     https://github.com/Serge3leo/countof_ns/blob/main/.github/workflows/cmake-multi-platform.yml).
@@ -33,6 +38,26 @@ An example with a CMake project can be see:
   - Default: `true`
 
 To speed up re-use, cache `MSYS2` and the installation directory OrangeC.
+
+It may be useful to use additional workflows to delete caches that are unlikely
+to be used (after a PR is closed, etc.).  Templates for such workflows: [Clean
+Cache Action]( https://github.com/marketplace/actions/clean-cache) or
+https://github.com/marketplace/actions/clean-cache-action .
+
+## cmake-module
+  - Type: `string`
+  - Allowed values: `check | always | not`
+  - Default: `check`
+
+### always
+Always patching Orange C support modules.
+
+### check
+Check availability. Patch Orange C support modules if features are not
+supported.
+
+### no
+Do not patch the Orange C support modules.
 
 ## cmake-update
   - Type: `boolean`

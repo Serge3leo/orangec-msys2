@@ -87,6 +87,7 @@ runs:
 
     - name: Restore cached OrangeC directory
       id: cache-od
+      if: inputs.cache == 'true'
       uses: actions/cache/restore@v5
       with:
         key: ${{ steps.od.outputs.key }}
@@ -100,7 +101,8 @@ runs:
                 orangec --version=${{ inputs.version }}
 
     - name: Save cached OrangeC directory
-      if: steps.cache-od.outputs.cache-hit != 'true'
+      if: ${{ inputs.cache == 'true' &&
+        steps.cache-od.outputs.cache-hit != 'true' }}
       uses: actions/cache/save@v5
       with:
         key: ${{ steps.od.outputs.key }}
@@ -123,11 +125,6 @@ runs:
         "ORANGEC=$env:ORANGEC"
         get-command occ
         occ --version
-        if ("skip" -ne "${{ inputs.msystem }}") {
-          "MSYSTEM=$env:MSYSTEM"
-          get-command pacman
-          pacman -V  | Select-Object -First 2
-        }
         foreach ($prg in 'ar', 'make', 'cmake', 'choco') {
           try {
             get-command $prg

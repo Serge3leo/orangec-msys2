@@ -1,6 +1,6 @@
-[![CMake on multiple platforms](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml/badge.svg?branch=main)](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml)
+[![CMake on multiple platforms](https://github.com/Serge3leo/orangec-setup/actions/workflows/cmake-multi-platform.yml/badge.svg?branch=main)](https://github.com/Serge3leo/orangec-setup/actions/workflows/cmake-multi-platform.yml)
 
-# orangec-msys2
+# orangec-setup
 Устанавливает компилятор OrangeC и настраивает пути и переменные для
 возможности использования CMake.
 
@@ -14,13 +14,13 @@ OrangeC/README.ru.md).
 
 # Использование
 ```
-  - uses: Serge3leo/orangec-msys2@v0
+  - uses: Serge3leo/orangec-setup@v0
 ```
 
 или
 
 ```
-  - uses: Serge3leo/orangec-msys2@v0
+  - uses: Serge3leo/orangec-setup@v0
     with:
       version: 6.73.1
       verbose: true
@@ -38,8 +38,7 @@ OrangeC/README.ru.md).
   - Тип: `boolean`
   - Значение по умолчанию: `true`
 
-Для ускорения повторного использования, кэшировать `MSYS2` и каталог установки
-OrangeC.
+Для ускорения повторного использования, кэшировать каталог установки OrangeC.
 
 Возможно будет полезно использовать дополнительные рабочие процессы для
 удаления тех кэшей, использование которых становится маловероятным (после

@@ -1,6 +1,6 @@
-[![CMake on multiple platforms](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml/badge.svg?branch=main)](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml)
+[![CMake on multiple platforms](https://github.com/Serge3leo/orangec-setup/actions/workflows/cmake-multi-platform.yml/badge.svg?branch=main)](https://github.com/Serge3leo/orangec-setup/actions/workflows/cmake-multi-platform.yml)
 
-# orangec-msys2
+# orangec-setup
 Installs the OrangeC compiler and configures paths and variables for the
 ability to use the CMake.
 
@@ -13,13 +13,13 @@ support modules.  You can use version 6.73.1 (partially compatible),
 
 # Usage
 ```
-  - uses: Serge3leo/orangec-msys2@v0
+  - uses: Serge3leo/orangec-setup@v0
 ```
 
 or
 
 ```
-  - uses: Serge3leo/orangec-msys2@v0
+  - uses: Serge3leo/orangec-setup@v0
     with:
       version: 6.73.1
       verbose: true
@@ -37,7 +37,7 @@ An example with a CMake project can be see:
   - Type: `boolean`
   - Default: `true`
 
-To speed up re-use, cache `MSYS2` and the installation directory OrangeC.
+To speed up re-use, cache installation directory OrangeC.
 
 It may be useful to use additional workflows to delete caches that are unlikely
 to be used (after a PR is closed, etc.).  Templates for such workflows: [Clean

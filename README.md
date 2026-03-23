@@ -1,8 +1,8 @@
-[![CMake on multiple platforms](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml/badge.svg?branch=main)](https://github.com/Serge3leo/orangec-msys2/actions/workflows/cmake-multi-platform.yml)
+[![CMake on multiple platforms](https://github.com/Serge3leo/orangec-setup/actions/workflows/cmake-multi-platform.yml/badge.svg?branch=main)](https://github.com/Serge3leo/orangec-setup/actions/workflows/cmake-multi-platform.yml)
 
-# orangec-msys2
-It installs the OrangeC compiler, MSYS2, and configures paths and variables for
-the ability to use the CMake "MSYS Makefiles" generator.
+# orangec-setup
+Installs the OrangeC compiler and configures paths and variables for the
+ability to use the CMake.
 
 See also [Patches for Orange C support modules CMake]( OrangeC/README.md).
 
@@ -13,13 +13,13 @@ support modules.  You can use version 6.73.1 (partially compatible),
 
 # Usage
 ```
-  - uses: Serge3leo/orangec-msys2@v0
+  - uses: Serge3leo/orangec-setup@v0
 ```
 
 or
 
 ```
-  - uses: Serge3leo/orangec-msys2@v0
+  - uses: Serge3leo/orangec-setup@v0
     with:
       version: 6.73.1
       verbose: true
@@ -37,12 +37,21 @@ An example with a CMake project can be see:
   - Type: `boolean`
   - Default: `true`
 
-To speed up re-use, cache `MSYS2` and the installation directory OrangeC.
+To speed up re-use, cache installation directory OrangeC.
 
 It may be useful to use additional workflows to delete caches that are unlikely
 to be used (after a PR is closed, etc.).  Templates for such workflows: [Clean
 Cache Action]( https://github.com/marketplace/actions/clean-cache) or
 https://github.com/marketplace/actions/clean-cache-action .
+
+## cmake
+  - Type: `string`
+  - Allowed values: executable command (path) `cmake`
+  - Default value: `cmake`
+
+Sets the `cmake` command used when installing support modules (i.e.
+after installation, this particular `cmake` command will support the Pelles
+C compiler).
 
 ## cmake-module
   - Type: `string`
@@ -59,42 +68,10 @@ supported.
 ### no
 Do not patch the Orange C support modules.
 
-## cmake-update
-  - Type: `boolean`
-  - Default: `false`
-
-Instal last CMake version from MSYS2.
-
-## install
-  - Type: `string`
-  - Allowed values: a whitespace separated list of packages
-
-Installing additional packages after updating the system is supported through
-option install.  See [Setup MSYS2, install](
-https://github.com/msys2/setup-msys2?tab=readme-ov-file#install).
-
 ## key-prefix
   - Type: `string`
 
 Add prefix to cache key (for refresh version, identification etc).
-
-## msystem
-  - Type: `string`
-  - Allowed values: `msys | mingw64 | mingw32 | ucrt64 |
-    clang64 | clangarm64 | skip`
-  - Default: `mingw64`
-
-Sets the value of the environment variable [`MSYSTEM`](
-https://www.msys2.org/docs/environments) and `PATH`.  Case is ignored.  If
-equal to `skip`, then the MSYS2 configuration is skipped.
-
-## pacboy
-  - Type: `string`
-  - Allowed values: a whitespace separated list of packages
-
-Installing additional packages with pacboy after updating the system is
-supported through option pacboy.  See [Setup MSYS2, pacboy](
-https://github.com/msys2/setup-msys2?tab=readme-ov-file#pacboy).
 
 ## verbose
   - Type: `boolean`

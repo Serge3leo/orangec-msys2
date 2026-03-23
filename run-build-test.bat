@@ -1,4 +1,4 @@
-@echo off
+@if "x%VERBOSE%"=="x" echo off
 rem vim:set sw=4 ts=8 et fileencoding=utf8:
 rem SPDX-License-Identifier: BSD-2-Clause
 rem SPDX-FileCopyrightText: 2026 Сергей Леонтьев (leo@sai.msu.ru)
@@ -17,7 +17,7 @@ if errorlevel 1 exit /b
 ctest --output-on-failure --build-config %build_type% ^
       --test-dir %build_output_dir%
 if errorlevel 1 exit /b
-%build_output_dir%\hello
+%build_output_dir%\tests\hello
 if errorlevel 1 exit /b
-%build_output_dir%\hello++
+%build_output_dir%\tests\hello++
 if errorlevel 1 exit /b

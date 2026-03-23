@@ -14,7 +14,7 @@ set(OrangeC_1_detect ${OrangeC_1_replace})
 set(OrangeC_2_module "${OrangeC_1_module}:2")
 set(OrangeC_2_match "([ \t]+set.CMAKE_.{lang}_RESPONSE_FILE_LINK_FLAG \"@\".[ \t]*\n)([ \t]*endmacro\\(\\)[ \t]*\n)")
 set(OrangeC_2_replace [=[\1
-  # orangec-msys2 patch
+  # orangec-setup patch
   if (CMAKE_C_COMPILER_VERSION VERSION_GREATER_EQUAL "7.0")
     if (NOT CMAKE_RC_COMPILER_INIT)
       set(CMAKE_RC_COMPILER_INIT orc)
@@ -35,7 +35,7 @@ set(OrangeC_2_detect "CMAKE_RC_COMPILER")
 
 set(OrangeC_C_module "Compiler/OrangeC-C.cmake")
 set(OrangeC_C_match "(\n)([ \t]*__compiler_orangec\\(C\\)[ \t]*\n)")
-set(OrangeC_C_replace [=[\1# orangec-msys2 patch
+set(OrangeC_C_replace [=[\1# orangec-setup patch
 if (CMAKE_C_COMPILER_VERSION VERSION_GREATER_EQUAL "6.0.71")
   set(CMAKE_C23_STANDARD_COMPILE_OPTION -2)
   set(CMAKE_C23_EXTENSION_COMPILE_OPTION -2)
@@ -49,7 +49,7 @@ set(OrangeC_C_detect "CMAKE_C23_STANDARD_COMPILE_OPTION")
 
 set(OrangeC_CXX_module "Compiler/OrangeC-CXX.cmake")
 set(OrangeC_CXX_match "(\n)([ \t]*__compiler_orangec\\(CXX\\)[ \t]*\n)")
-set(OrangeC_CXX_replace [=[\1# orangec-msys2 patch
+set(OrangeC_CXX_replace [=[\1# orangec-setup patch
 if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL "7.0")
   set(CMAKE_CXX17_STANDARD_COMPILE_OPTION "-std=c++17")
   set(CMAKE_CXX17_EXTENSION_COMPILE_OPTION "-std=c++17")

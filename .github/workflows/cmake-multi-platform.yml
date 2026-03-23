@@ -16,48 +16,36 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
-      fail-fast: true
-
-      # Set up a matrix to run the following configurations:
-      #
-      # 1. <Latest OrangeC, windows-2025-vs2026, "MSYS Makefiles">
-      #
-      # 2. <OrangeC 6.73, windows-2022, "MSYS Makefiles">
-      #
-      # To add more build types (Release, Debug, RelWithDebInfo, etc.)
-      # customize the build_type list.
+      fail-fast: false
 
       matrix:
         version: ["", 6.73.1]  # 6.0.42.1 (6.42.1) don't supported by CMake
+        os: [windows-latest, windows-2022]
         c_compiler: [occ]
         cpp_compiler: [occ]
         build_type: [Release]
         generator: ["MSYS Makefiles"]
         platform: [win32]
         # cmake_add: [--debug-trycompile]
-        include:
-          - version: ""  # Last, 7.0.7 at Mar 5, 2026
-            os: windows-2025-vs2026
-          - version: 6.73.1
-            os: windows-2022
+        exclude:
+          - {version: 6.73.1, os: windows-latest}
 
     steps:
       - uses: actions/checkout@v6
 
       - name: Lint
+        if: matrix.os == 'windows-latest'  # One test
         run: |
           python -m pip install yamllint
           python -m yamllint --list-file .
           python -m yamllint .
 
-      - name: Test action (Setup OrangeC with pre-installed MSYS2 for CMake)
+      - name: Test action (Setup Orange C for CMake)
         uses: ./
         with:
           version: ${{ matrix.version }}
-          # verbose: true
-          # cmake-update: true
-          # install: patch
-          # pacboy: clang:p
+          verbose: true
+          # cache: false
 
       - name: Configure CMake
         run: >
@@ -78,7 +66,7 @@ jobs:
 
       - name: Run Windows
         run: |
-          cd build
+          cd build\tests
           ./hello
           ./hello++
           ./bsd_echo my args

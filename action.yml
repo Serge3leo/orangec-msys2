@@ -75,7 +75,7 @@ runs:
       id: od
       shell: pwsh
       run: |
-        $key = "${{ inputs.key-prefix }}_OrangeC_${{ inputs.version }}_0.4"
+        $key = "${{ inputs.key-prefix }}_OrangeC_${{ inputs.version }}_0.6"
         if ($${{ startsWith(inputs.version, '6.0') }}) {
           $od = "C:\Program Files (x86)\Orange C 386"
         } else {

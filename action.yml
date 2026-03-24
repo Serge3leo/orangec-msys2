@@ -46,7 +46,7 @@ runs:
           Write-Error ("`cmake-module` allowed values: `check | always | no`")
           Exit 1
         }
-        if ("x" != "x${{ inputs.version }}") {
+        if ("x" -ne "x${{ inputs.version }}") {
           $ov = "${{ inputs.version }}" -replace "[^0-9.]*$"
           $ocmk = "6.73"
           if ([version]$ov -lt [version]$ocmk) {

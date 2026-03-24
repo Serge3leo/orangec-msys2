@@ -39,7 +39,7 @@ runs:
   using: composite
   steps:
     - name: Check Orange C version compatible with CMake
-      if: 'no' != inputs.cmake-module
+      if: inputs.cmake-module != 'no'
       shell: pwsh
       run: |
         if ("${{ inputs.cmake-module }}" -cnotmatch "^(always|check|no)") {
@@ -58,7 +58,7 @@ runs:
         }
 
     - name: Install CMake OrangeC patch
-      if: 'no' != inputs.cmake-module
+      if: inputs.cmake-module != 'no'
       shell: pwsh -File {0}
       run: |
         $om = "$env:GITHUB_ACTION_PATH\OrangeC"
@@ -139,7 +139,7 @@ runs:
         }
 
     - id: cmake-report
-      if: 'no' != inputs.cmake-module
+      if: inputs.cmake-module != 'no'
       shell: pwsh
       run: |
         &"${{ inputs.cmake }}" -P "$env:GITHUB_ACTION_PATH\cmake_report.cmake" `

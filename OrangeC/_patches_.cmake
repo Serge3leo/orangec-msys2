@@ -5,16 +5,31 @@
 include(_support_)
 
 set(OrangeC_1_module "Compiler/OrangeC.cmake")
-set(OrangeC_1_match "_COMPILER> -! <FLAGS> -o <TARGET> --out-implib <TARGET_IMPLIB> <CMAKE_SHARED_LIBRARY_")
-set(OrangeC_1_replace "_COMPILER> -! -o <TARGET> --out-implib <TARGET_IMPLIB> <CMAKE_SHARED_LIBRARY_")
-set(OrangeC_1_rev_match ${OrangeC_1_replace})
-set(OrangeC_1_rev_replace ${OrangeC_1_match})
-set(OrangeC_1_detect ${OrangeC_1_replace})
+set(OrangeC_1_match "(macro\\(__compiler_orangec lang\\)[ \t]*\n)")
+set(OrangeC_1_replace [=[\1  # orangec-setup patch1
+  if (lang STREQUAL ASM)
+    set(_ORANGEC_COMPILE_${lang} " -x asm")
+  elseif (lang STREQUAL C)
+    set(_ORANGEC_COMPILE_${lang} " -x c")
+  endif ()
+  # orangec-setup patch1 end
 
-set(OrangeC_2_module "${OrangeC_1_module}:2")
-set(OrangeC_2_match "([ \t]+set.CMAKE_.{lang}_RESPONSE_FILE_LINK_FLAG \"@\".[ \t]*\n)([ \t]*endmacro\\(\\)[ \t]*\n)")
-set(OrangeC_2_replace [=[\1
-  # orangec-setup patch
+]=])
+set(OrangeC_1_rev_match "${OrangeC_1_match}.*patch[^\n]* end\n\n")
+set(OrangeC_1_rev_replace "\\1")
+set(OrangeC_1_detect "_ORANGEC_COMPILE_.*-x")
+
+set(OrangeC_2_module "${OrangeC_2_module}:2")
+set(OrangeC_2_match "_COMPILER> -! <FLAGS> -o <TARGET> --out-implib <TARGET_IMPLIB> <CMAKE_SHARED_LIBRARY_")
+set(OrangeC_2_replace "_COMPILER> -! -o <TARGET> --out-implib <TARGET_IMPLIB> <CMAKE_SHARED_LIBRARY_")
+set(OrangeC_2_rev_match ${OrangeC_2_replace})
+set(OrangeC_2_rev_replace ${OrangeC_2_match})
+set(OrangeC_2_detect ${OrangeC_2_replace})
+
+set(OrangeC_3_module "${OrangeC_1_module}:3")
+set(OrangeC_3_match "([ \t]+set.CMAKE_.{lang}_RESPONSE_FILE_LINK_FLAG \"@\".[ \t]*\n)([ \t]*endmacro\\(\\)[ \t]*\n)")
+set(OrangeC_3_replace [=[\1
+  # orangec-setup patch3
   if (CMAKE_C_COMPILER_VERSION VERSION_GREATER_EQUAL "7.0")
     if (NOT CMAKE_RC_COMPILER_INIT)
       set(CMAKE_RC_COMPILER_INIT orc)
@@ -29,9 +44,9 @@ set(OrangeC_2_replace [=[\1
     endif ()
   endif ()
 \2]=])
-set(OrangeC_2_rev_match "([ \t]+set.CMAKE_.{lang}_RESPONSE_FILE_LINK_FLAG \"@\".[ \t]*\n).*#.*patch.*\n([ \t]*endmacro\\(\\)[ \t]*\n)")
-set(OrangeC_2_rev_replace "\\1\\2")
-set(OrangeC_2_detect "CMAKE_RC_COMPILER")
+set(OrangeC_3_rev_match "([ \t]+set.CMAKE_.{lang}_RESPONSE_FILE_LINK_FLAG \"@\".[ \t]*\n).*#.*patch.*\n([ \t]*endmacro\\(\\)[ \t]*\n)")
+set(OrangeC_3_rev_replace "\\1\\2")
+set(OrangeC_3_detect "CMAKE_RC_COMPILER")
 
 set(OrangeC_C_module "Compiler/OrangeC-C.cmake")
 set(OrangeC_C_match "(\n)([ \t]*__compiler_orangec\\(C\\)[ \t]*\n)")

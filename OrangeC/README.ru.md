@@ -36,17 +36,16 @@ cmake -P OrangeC\detect.cmake
 
 ## Известные особенности и ограничения
 
-- В правилах создания динамических библиотек не реализована поддержка целевого
+- В версиях 7.0 и выше поддерживается ключ `--export-all-symbols`, однако в
+  правилах создания динамических библиотек не реализована поддержка целевого
   свойства `WINDOWS_EXPORT_ALL_SYMBOLS` и переменной
   `CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS`.  При необходимости, придётся вручную
-  использовать ключ `--export-all-symbols`, или `add_link_options(
+  использовать ключ `--export-all-symbols`, или использовать `add_link_options(
   "$<IF:$<BOOL:$<TARGET_PROPERTY:WINDOWS_EXPORT_ALL_SYMBOLS>>,--export-all-symbols,>")`;
 
-- Поддержка модуля `GenerateExportHeader` (т.е.`__declspec(dllexport)` и
-  `__declspec(dllimport)`) не работает для версии 6.73 или ниже (причины этого
-  не ясны);
-
-- В Orange C нет поддержки `.def` файлов экспорта;
+- В Orange C нет поддержки `.def` файлов экспорта (следует использовать, либо
+  модуль `GenerateExportHeader`, либо использовать `__declspec(dllexport)` и
+  `__declspec(dllimport)` вручную);
 
 - Поддержка `.rc` файлов ресурсов для CMake реализована только для версии 7.0
   или выше.

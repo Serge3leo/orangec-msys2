@@ -55,7 +55,7 @@ C compiler).
 
 ## cmake-module
   - Type: `string`
-  - Allowed values: `check | always | not`
+  - Allowed values: `check | always | no`
   - Default: `check`
 
 ### always
@@ -85,6 +85,9 @@ Show the paths and versions of the main components: `occ`, `make`, `cmake`, ...
 If not specified, the latest available version is installed.  The list of
 available versions is given below:
 [https://community.chocolatey.org/packages/orangec](https://community.chocolatey.org/packages/orangec).
+
+# Links
+- [OrangeC: Can't create shared library (DLL) with Makefile generators](https://gitlab.kitware.com/cmake/cmake/-/work_items/27716)
 
 # Contributing
 Issues or PRs are accepted and welcome.

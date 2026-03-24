@@ -57,7 +57,7 @@ C).
 
 ## cmake-module
   - Тип: `string`
-  - Допустимые значения: `check | always | not`
+  - Допустимые значения: `check | always | no`
   - Значение по умолчанию: `check`
 
 ### always
@@ -87,6 +87,9 @@ C).
 Если не задан, устанавливается последняя доступная версия.  Список доступных
 версии приведён:
 [https://community.chocolatey.org/packages/orangec](https://community.chocolatey.org/packages/orangec).
+
+# Ссылки
+- [OrangeC: Can't create shared library (DLL) with Makefile generators](https://gitlab.kitware.com/cmake/cmake/-/work_items/27716)
 
 # Участие
 Замечания (issues), добавления или исправления (pr) - принимаются и

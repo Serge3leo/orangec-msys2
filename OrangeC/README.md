@@ -36,17 +36,16 @@ Checks for feature support for the current CMake.
 
 ## Known limitations
 
-- The rules for creating dynamic libraries do not support the target property
+- In versions 7.0 and higher, the `--export-all-symbols` key is supported, but
+  the rules for creating dynamic libraries do not support the target property
   `WINDOWS_EXPORT_ALL_SYMBOLS` and the variable
-  `CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS`. If necessary, you will need to manually
-  use the `--export-all-symbols` switch, or `add_link_options(
+  `CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS`.  If necessary, you can manually use the
+  `--export-all-symbols` key or use `add_link_options(
   "$<IF:$<BOOL:$<TARGET_PROPERTY:WINDOWS_EXPORT_ALL_SYMBOLS>>,--export-all-symbols,>")`;
 
-- Support for the `GenerateExportHeader` module (i.e. `__declspec(dllexport)`
-  and `__declspec(dllimport)`) does not work for version 6.73 or lower (the
-  reasons for this are unclear);
-
-- Orange C does not support `.def` export files;
+- Orange C does not support `.def` export files (you should use either the
+  `GenerateExportHeader` module or manually use `__declspec(dllexport)` and
+  `__declspec(dllimport)`);
 
 - Support for `.rc` resource files for CMake is only implemented for version
   7.0 or higher.

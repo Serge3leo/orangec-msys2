@@ -43,7 +43,7 @@ runs:
       shell: pwsh
       run: |
         if ("${{ inputs.cmake-module }}" -cnotmatch "^(always|check|no)") {
-          Write-Error ("`cmake-module` allowed values: `check | always | no`")
+          Write-Error ("``cmake-module`` allowed values: ``check | always | no``")
           Exit 1
         }
         if ("x" -ne "x${{ inputs.version }}") {
